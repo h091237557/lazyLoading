@@ -20,11 +20,13 @@
 			if (!elements.length) return;
 			var innerHeigh = this.getPosition.ViewPort(),
 			ellength = elements.length,
-			index = 0;
+			index = 0,
+			scrollTop = 0;
 
 			for (var i = 0; i < ellength; i++) {
 				index = this.getPosition.ElementViewTop(elements[i]);
-				if (index - this.getPosition.ScrollTop() < innerHeigh) {
+				scrollTop = this.getPosition.ScrollTop();
+				if (index - scrollTop < innerHeigh) {
 					elements[i].src = elements[i].getAttribute("lazy_src");
 					delete elements[i];
 				}
@@ -47,7 +49,7 @@
 				if (document.compatModel == "BackCompat") {
 					height = document.body.clientHeight;
 				} else {
-					heigth = document.documentElement.clientHeight;
+					height = document.documentElement.clientHeight;
 				}
 				return height;
 			},
