@@ -11,7 +11,7 @@
 			var el = document.getElementsByTagName('img'),
 			ellength = el.length;
 			for (var i = 0; i < ellength; i++) {
-				if (typeof(el[i].getAttribute("lazy_src"))) {
+				if (typeof(el[i].getAttribute("data-original"))) {
 					elements.push(el[i]);
 				}
 
@@ -28,7 +28,7 @@
 				index = this.getPosition.ElementViewTop(elements[i]);
 				scrollTop = this.getPosition.ScrollTop();
 				if (index - scrollTop < innerHeigh) {
-					elements[i].src = elements[i].getAttribute("lazy_src");
+					elements[i].src = elements[i].getAttribute("data-original");
 					delete elements[i];
 				}
 			}
@@ -40,14 +40,14 @@
 					that.lazy();
 				},
 				1000);
-			}
+			};
 
 		},
 		getPosition: {
 
 			ViewPort: function() {
 				var height = 0;
-				if (document.compatModel == "BackCompat") {
+				if (document.compatModel === "BackCompat") {
 					height = document.body.clientHeight;
 				} else {
 					height = document.documentElement.clientHeight;
@@ -56,7 +56,7 @@
 			},
 			ScrollTop: function() {
 				var elementScrollTop = 0;
-				if (document.compatModel == "BackCompat") {
+				if (document.compatModel === "BackCompat") {
 					elementScrollTop = document.documentElement.scrollTop;
 				} else {
 					elementScrollTop = document.body.scrollTop;
@@ -68,9 +68,9 @@
 				current = 0;
 
 				if (el) {
-					actualTop = el.offsetTop,
+					actualTop = el.offsetTop;
 					current = el.offsetParent;
-					while (current != null) {
+					while (current !== null) {
 						actualTop += current.offsetTop;
 						current = current.offsetParent;
 					}

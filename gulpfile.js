@@ -6,6 +6,7 @@ uglify = require('gulp-uglify'),
 plumber = require('gulp-plumber'),
 clean = require('gulp-clean'),
 rename = require('gulp-rename'),
+runSequence = require('run-sequence'),
 package = require('./package.json');
 
 var paths = {
@@ -45,3 +46,9 @@ gulp.task('lint',function(){
 			.pipe(jshint())
 			.pipe(jshint.reporter('jshint-stylish'));
 });
+
+gulp.task('default',function(cb){
+	runSequence('clean', ['lint','scripts'], cb);
+
+});
+
